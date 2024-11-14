@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { getMessageHeight } from "./utils.js";
 
-export function initSlackAnimations() {
+export function initSlackAnimations(initialDelay = 4, rotationDelay = 5) {
   const track = document.querySelector(".conversation_track");
   const messageContainer = track.querySelector(".conversation_messages");
   const messages = Array.from(
@@ -32,14 +32,29 @@ export function initSlackAnimations() {
           gsap.set(messageContainer, { y: 0 });
         }
 
-        if (!isPaused) {
-          startRotation();
+        if (currentIndex === messages.length - 1) {
+          gsap.to(messageContainer, {
+            opacity: 0,
+            duration: 0.5,
+            onComplete: () => {
+              setTimeout(() => {
+                gsap.set(messageContainer, { opacity: 1 });
+                currentIndex = 0;
+                gsap.set(messageContainer, { y: 0 });
+                startRotation(initialDelay);
+              }, 2000);
+            },
+          });
+        } else {
+          if (!isPaused) {
+            startRotation(rotationDelay);
+          }
         }
       },
     });
   }
 
-  function startRotation(delay = 3) {
+  function startRotation(delay) {
     if (rotationTimeout) clearTimeout(rotationTimeout);
     if (!isPaused) {
       rotationTimeout = setTimeout(() => {
@@ -58,9 +73,9 @@ export function initSlackAnimations() {
     isPaused = false;
     pause.classList.remove("active");
     if (!isAnimating) {
-      startRotation();
+      startRotation(initialDelay);
     }
   });
 
-  startRotation(0.8);
+  startRotation(initialDelay);
 }

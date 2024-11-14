@@ -5,7 +5,9 @@ import gsap from "gsap";
 // Webflow-specific initialization
 globalThis.Webflow ||= [];
 globalThis.Webflow.push(() => {
-  initSlackAnimations();
+  const rotationDelay =
+    document.querySelector(".conversation_wrap").dataset.delay;
+  initSlackAnimations(3, rotationDelay);
   const pulesTimeline = gsap.timeline({
     repeat: -1, // Repeat indefinitely
   });
