@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { getMessageHeight } from "./utils.js";
 
-export function initSlackAnimations(initialDelay = 4, rotationDelay = 5) {
+export function initSlackAnimations(initialDelay = 3, rotationDelay = 3) {
   const track = document.querySelector(".conversation_track");
   const messageContainer = track.querySelector(".conversation_messages");
   const messages = Array.from(
@@ -35,7 +35,8 @@ export function initSlackAnimations(initialDelay = 4, rotationDelay = 5) {
         if (currentIndex === messages.length - 1) {
           gsap.to(messageContainer, {
             opacity: 0,
-            duration: 0.5,
+            duration: 1,
+            delay: rotationDelay,
             onComplete: () => {
               setTimeout(() => {
                 gsap.set(messageContainer, { opacity: 1 });
