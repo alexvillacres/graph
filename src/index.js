@@ -38,7 +38,17 @@ globalThis.Webflow.push(() => {
     ["110%", "150%", "180%", "200%"],
   );
 
+  const gcalAnimation = gsap.timeline();
+  animatePulse(
+    gcalAnimation,
+    "#gcal-circle",
+    ["#gcal-stop1", "#gcal-stop2", "#gcal-stop3", "#gcal-stop4"],
+    ["-100%", "-60%", "-40%", "0%"],
+    ["110%", "150%", "180%", "200%"],
+  );
+
   pulesTimeline.add(linearAnimation, 0);
   pulesTimeline.add(githubAnimation, "-=1");
   pulesTimeline.add(jiraAnimation, "-=1");
+  pulesTimeline.add(gcalAnimation, "-=1");
 });

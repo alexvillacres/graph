@@ -36,7 +36,7 @@ export function initSlackAnimations(initialDelay = 3, rotationDelay = 3) {
           gsap.to(messageContainer, {
             opacity: 0,
             duration: 1,
-            delay: rotationDelay,
+            delay: 7,
             onComplete: () => {
               setTimeout(() => {
                 gsap.set(messageContainer, { opacity: 1 });
