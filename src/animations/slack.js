@@ -7,6 +7,7 @@ export function initSlackAnimations(initialDelay = 3, rotationDelay = 3) {
   const messages = Array.from(
     messageContainer.querySelectorAll(".conversation_message"),
   );
+
   const pause = document.querySelector(".conversation_pause");
   let currentIndex = 0;
   let rotationTimeout;
@@ -25,14 +26,12 @@ export function initSlackAnimations(initialDelay = 3, rotationDelay = 3) {
       duration: 0.2,
       ease: "ease-in-out",
       onComplete: () => {
-        currentIndex = (currentIndex + 1) % messages.length;
+        console.log("completed animating: ", currentIndex);
+        currentIndex++;
+        console.log("next index: ", currentIndex);
         isAnimating = false;
 
-        if (currentIndex === 0) {
-          gsap.set(messageContainer, { y: 0 });
-        }
-
-        if (currentIndex === messages.length - 1) {
+        if (currentIndex >= messages.length) {
           gsap.to(messageContainer, {
             opacity: 0,
             duration: 1,
@@ -46,10 +45,11 @@ export function initSlackAnimations(initialDelay = 3, rotationDelay = 3) {
               }, 2000);
             },
           });
-        } else {
-          if (!isPaused) {
-            startRotation(rotationDelay);
-          }
+          return;
+        }
+
+        if (!isPaused) {
+          startRotation(rotationDelay);
         }
       },
     });
