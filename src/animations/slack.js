@@ -26,9 +26,7 @@ export function initSlackAnimations(initialDelay = 3, rotationDelay = 3) {
       duration: 0.2,
       ease: "ease-in-out",
       onComplete: () => {
-        console.log("completed animating: ", currentIndex);
         currentIndex++;
-        console.log("next index: ", currentIndex);
         isAnimating = false;
 
         if (currentIndex >= messages.length) {
