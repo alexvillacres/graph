@@ -1,0 +1,15 @@
+{
+  "hash": "23a42a1f",
+  "configHash": "c775d09f",
+  "lockfileHash": "e3b0c442",
+  "browserHash": "fc9c4edf",
+  "optimized": {
+    "gsap": {
+      "src": "../../node_modules/.deno/gsap@3.12.5/node_modules/gsap/index.js",
+      "file": "gsap.js",
+      "fileHash": "887fef5e",
+      "needsInterop": false
+    }
+  },
+  "chunks": {}
+}

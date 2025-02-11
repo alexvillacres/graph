@@ -7,7 +7,8 @@ globalThis.Webflow ||= [];
 globalThis.Webflow.push(() => {
   const rotationDelay =
     document.querySelector(".conversation_wrap").dataset.delay;
-  initSlackAnimations(3, rotationDelay);
+  const initialDelay = document.querySelector(".conversation_wrap").dataset.init;
+  initSlackAnimations(initialDelay, rotationDelay);
   const pulesTimeline = gsap.timeline({
     repeat: -1, // Repeat indefinitely
   });
